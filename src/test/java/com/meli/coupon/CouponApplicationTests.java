@@ -1,13 +1,13 @@
 package com.meli.coupon;
 
-import org.junit.jupiter.api.Test;
-import org.springframework.boot.test.context.SpringBootTest;
+import com.meli.coupon.usecase.CalculateOptimalSolutionUseCaseTest;
+import org.junit.runner.RunWith;
+import org.junit.runners.Suite;
 
-@SpringBootTest
+@RunWith(Suite.class)
+@Suite.SuiteClasses({
+		CalculateOptimalSolutionUseCaseTest.class
+})
 class CouponApplicationTests {
-
-	@Test
-	void contextLoads() {
-	}
 
 }
