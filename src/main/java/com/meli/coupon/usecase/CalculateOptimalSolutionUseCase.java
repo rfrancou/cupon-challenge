@@ -8,7 +8,7 @@ import com.meli.coupon.model.ItemMeliResponse;
 import com.meli.coupon.model.OptionalSolution;
 import com.meli.coupon.model.State;
 import com.meli.coupon.repository.ItemsMeliRepositoryImpl;
-import lombok.NoArgsConstructor;
+import org.springframework.stereotype.Service;
 
 import java.util.Map;
 import java.util.Arrays;
@@ -17,12 +17,12 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.stream.Collectors;
 
-@NoArgsConstructor
+@Service
 public class CalculateOptimalSolutionUseCase {
 
     private ItemsMeliRepositoryImpl itemsMeliRepositoryImpl;
 
-    public CalculateOptimalSolutionUseCase(final ItemsMeliRepositoryImpl itemsMeliRepositoryImpl) {
+    public CalculateOptimalSolutionUseCase(ItemsMeliRepositoryImpl itemsMeliRepositoryImpl) {
         this.itemsMeliRepositoryImpl = itemsMeliRepositoryImpl;
     }
 

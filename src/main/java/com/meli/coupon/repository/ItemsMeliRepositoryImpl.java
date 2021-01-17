@@ -4,12 +4,12 @@ import com.meli.coupon.model.ItemMeliResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Service;
+import org.springframework.stereotype.Repository;
 import org.springframework.web.client.RestTemplate;
 
 import java.util.List;
 
-@Service
+@Repository
 public class ItemsMeliRepositoryImpl implements ItemsMeliRepository {
 
     private final String meliUrl;
