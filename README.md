@@ -26,6 +26,20 @@ Esto nos pondra a correr el servicio en el puerto 8080
 Para probar el servicio de forma online
 
 https://challenge-coupon.herokuapp.com/
+
+* Method: POST
+* PATH: /coupon
+* Body:
+
+```json
+{
+	"item_ids": ["MLA635957485", "MLA821631446", "MLA898568819"],
+	"amount": 600
+}
+```
+
+
+
 ```curl
 curl -H "Content-Type: application/json" -X POST https://challenge-coupon.herokuapp.com/coupon -d "{\"item_ids\":[\"MLA635957485\",\"MLA821631446\", \"MLA898568819\"],\"amount\":6000}"
 ```
