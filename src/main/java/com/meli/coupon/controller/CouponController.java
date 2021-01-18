@@ -5,7 +5,6 @@ import com.meli.coupon.exception.IncorrectAmountException;
 import com.meli.coupon.model.CouponRequest;
 import com.meli.coupon.model.OptionalSolution;
 import com.meli.coupon.usecase.CalculateOptimalSolutionUseCase;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -20,7 +19,7 @@ public class CouponController {
     }
 
     @PostMapping("/coupon")
-    public ResponseEntity getOptimalSolution(
+    public OptionalSolution getOptimalSolution(
             @RequestBody CouponRequest body
     ) {
         if(body.getItemIds() == null || body.getItemIds().isEmpty()) {
@@ -30,9 +29,8 @@ public class CouponController {
             throw new IncorrectAmountException("Must have amount greater than zero");
         }
 
-        OptionalSolution optimalSolution =
-                calculateOptimalSolutionUseCase.getOptimalSolution(body.getItemIds(), body.getAmount());
-        return ResponseEntity.ok(optimalSolution);
+        return calculateOptimalSolutionUseCase.getOptimalSolution(body.getItemIds(), body.getAmount());
+
     }
 
 }
