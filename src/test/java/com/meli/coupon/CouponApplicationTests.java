@@ -12,6 +12,6 @@ import org.junit.runners.Suite;
 		ItemsMeliRepositoryImplTest.class,
 		CouponControllerTest.class
 })
-class CouponApplicationTests {
+public class CouponApplicationTests {
 
 }
