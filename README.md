@@ -11,7 +11,8 @@
 
 ### Pre-requisitos
 Para poder ejecutar el servicio, debes tener una versión de Java >= 8 y Maven para instalar las dependencias.
-Ejecutar servicio
+
+### Ejecutar servicio
 
 Parados en el root del proyecto ejecutamos
 
@@ -27,4 +28,9 @@ Para probar el servicio de forma online
 https://challenge-coupon.herokuapp.com/
 ```curl
 curl -H "Content-Type: application/json" -X POST https://challenge-coupon.herokuapp.com/coupon -d "{\"item_ids\":[\"MLA635957485\",\"MLA821631446\", \"MLA898568819\"],\"amount\":6000}"
+```
+### Tests
+
+```sh
+mvn test
 ```
