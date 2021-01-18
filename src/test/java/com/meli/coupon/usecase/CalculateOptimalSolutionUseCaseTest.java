@@ -1,5 +1,7 @@
 package com.meli.coupon.usecase;
 
+import com.meli.coupon.exception.IncorrectAmountException;
+import com.meli.coupon.exception.IncorrectItemPriceException;
 import com.meli.coupon.exception.InsufficientAmountException;
 import com.meli.coupon.exception.WrongItemIdException;
 import com.meli.coupon.model.ItemMeli;
@@ -13,6 +15,68 @@ import org.mockito.Mockito;
 import java.util.*;
 
 public class CalculateOptimalSolutionUseCaseTest {
+
+    @Test(expected = IncorrectItemPriceException.class)
+    public void whenItemHasZeroPriceShouldThrowIncorrectItemPriceException() throws Exception {
+
+        ItemsMeliRepositoryImpl itemsMeliRepository =
+                Mockito.mock(ItemsMeliRepositoryImpl.class);
+
+        final String itemMeliId1 = "MLA898568818";
+        ItemMeli itemMeli1 = ItemMeli.builder()
+                .id(itemMeliId1)
+                .price(0f)
+                .title("Aire Acondicionado Philco Split  Frío/calor 2881 Frigorías  Blanco 220v - 240v Phs32ha3an")
+                .build();
+
+        ItemMeliResponse itemMeliResponse1 = ItemMeliResponse.builder()
+                .body(itemMeli1)
+                .code(200)
+                .build();
+
+        CalculateOptimalSolutionUseCase calculateOptimalSolutionUseCase =
+                new CalculateOptimalSolutionUseCase(itemsMeliRepository);
+
+        final Float amount = 50f;
+        List<String> itemIds = Arrays.asList(itemMeliId1);
+        ItemMeliResponse[] itemMeliResponse = new ItemMeliResponse[1];
+
+        itemMeliResponse[0] = itemMeliResponse1;
+        Mockito.when(itemsMeliRepository.findByIds(itemIds)).thenReturn(itemMeliResponse);
+
+        calculateOptimalSolutionUseCase.getOptimalSolution(itemIds, amount);
+    }
+
+    @Test(expected = IncorrectAmountException.class)
+    public void whenAmountIsZeroShouldThrowIncorrectAmountException() throws Exception {
+
+        ItemsMeliRepositoryImpl itemsMeliRepository =
+                Mockito.mock(ItemsMeliRepositoryImpl.class);
+
+        final String itemMeliId1 = "MLA898568818";
+        ItemMeli itemMeli1 = ItemMeli.builder()
+                .id(itemMeliId1)
+                .price(48999f)
+                .title("Aire Acondicionado Philco Split  Frío/calor 2881 Frigorías  Blanco 220v - 240v Phs32ha3an")
+                .build();
+
+        ItemMeliResponse itemMeliResponse1 = ItemMeliResponse.builder()
+                .body(itemMeli1)
+                .code(200)
+                .build();
+
+        CalculateOptimalSolutionUseCase calculateOptimalSolutionUseCase =
+                new CalculateOptimalSolutionUseCase(itemsMeliRepository);
+
+        final Float amount = 0f;
+        List<String> itemIds = Arrays.asList(itemMeliId1);
+        ItemMeliResponse[] itemMeliResponse = new ItemMeliResponse[1];
+
+        itemMeliResponse[0] = itemMeliResponse1;
+        Mockito.when(itemsMeliRepository.findByIds(itemIds)).thenReturn(itemMeliResponse);
+
+        calculateOptimalSolutionUseCase.getOptimalSolution(itemIds, amount);
+    }
 
     @Test
     public void sholdReturnOptimalSolution() throws Exception {
