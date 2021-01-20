@@ -1,5 +1,8 @@
 ## Cupon Meli Challenge
 
+[![codecov](https://codecov.io/gh/rfrancou/cupon-challenge/branch/master/graph/badge.svg?token=M9SVROXQF8)](https://codecov.io/gh/rfrancou/cupon-challenge)
+
+
 > Servicio que, a partir de un monto y una lista de items(con precio) determinada, maximiza la compra de items sin exeder el monto disponible.
 
 ### Tecnologias
